@@ -15,6 +15,7 @@ body{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
+    justify-items: center;
 
     }
 }
@@ -24,6 +25,7 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    justify-items: center;
     }
 }
 @media (min-width: 1115px) {
@@ -32,6 +34,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    justify-items: center;
     }
 }
 @media (min-width: 1500px) {
@@ -41,6 +44,7 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    justify-items: center;
     }
 }
 
