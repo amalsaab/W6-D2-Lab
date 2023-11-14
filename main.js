@@ -3,7 +3,7 @@ const UserName = document.getElementById('UserName')
 const Email = document.getElementById('Email')
 const Password = document.getElementById('Password')
 const form_signup = document.getElementById('form-signup')
-
+products()
 function products(){
     fetch("https://fakestoreapi.com/products")
     .then(Response => Response.json())
@@ -23,7 +23,7 @@ function products(){
 
 let API = "https://655309665449cfda0f2e03c5.mockapi.io/users"
 async function signUp(){
-    var errorm = document.getElementById("error")
+    // var errorm = document.getElementById("error")
     let userName = UserName.value
     let email = Email.value
     let password = Password.value
@@ -39,18 +39,15 @@ async function signUp(){
     } 
     if(found){
         alert(text)
-        form_signup.action = "index.html"
     } else{
-        // const UserName = document.getElementById('UserName')
-        // const Email = document.getElementById('Email')
-        // const Password = document.getElementById('Password')
+
         try {
         let response = await fetch(API, {
             method: 'POST',
             body: JSON.stringify({
-                userName: Password.value,
-                email:Email.value,
-                password:password.value
+                userName,
+                email,
+                password
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -59,13 +56,34 @@ async function signUp(){
         let data = await response.json()
         console.log(data);
         }catch(error){
-            console.error(`Download error: ${errorm.innerHTML = error.message}`);
+            console.error(`Download error: ${error.message}`);
         }
 
-    
-        // form_signup.action = "sginin.html"
+        window.location.replace("sginin.html")
     }
 }
-    // console.log(errorm);
 
-    // signUp()
+async function  SignIn() {
+    let email = document.getElementById('email')
+    let password = document.getElementById('password')
+    let form_signin = document.getElementById('form-signin')
+    email = email.value
+    password = password.value
+    if (password.length < 8) {
+        alert("the password is less then 8")
+    }else{
+        let response = await fetch(API);
+        let data = await response.json()
+        let user = data.find(user => {
+            return user.email === email && user.password === password;
+        })
+        console.log(user);
+        if (user === undefined){
+            alert("the email or password is not correct")
+        }else{
+            window.location.replace("Home.html")
+            // form_signin.href = "Home.html"
+        }
+    }
+
+}
